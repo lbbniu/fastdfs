@@ -10,4 +10,5 @@ dockter fastdfs
  store_path0=/data/fast_data
  tracker目录
  base_path=/data/fast_data
+ /soft/php-7.2.1/lib/php/extensions/no-debug-zts-20170718/fastdfs_client.so
 ```

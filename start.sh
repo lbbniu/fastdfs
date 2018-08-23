@@ -13,3 +13,6 @@
 
 #构建docker
 docker-compose up -d
+
+#docker cp test/fastdfs_client.so php72_min:/soft/php-7.2.1/lib/php/extensions/no-debug-zts-20170718/fastdfs_client.so
+#docker cp test/fastdfs_client.ini php72_min:/data/php7/ext

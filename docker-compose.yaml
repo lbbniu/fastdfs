@@ -46,3 +46,16 @@ services:
             - ./fdfs/tracker.conf:/etc/fdfs/tracker.conf
         working_dir: /
         command: ["sh","tracker.sh"]
+#    php7:
+#        container_name: php72_min
+#        image: lbbniu/php:7.2m
+#        restart: always
+#        links:
+#            - tracker:tracker
+#            - storage:storage
+#            - storage1:storage1
+#        volumes:
+#            - ./data:/data
+#            - ./test:/data/test
+#        working_dir: /data/test
+#        command: ["/sbin/php-fpm"]
