@@ -1,0 +1,48 @@
+version: '3'
+services:
+    storage:
+        container_name: storage
+        image: morunchang/fastdfs
+        restart: always
+        ports:
+            - 2280:80
+        links:
+            - tracker:tracker
+        environment:
+            - TRACKER_IP=tracker:22122
+            - GROUP_NAME=lbbniu0
+        volumes:
+            - ./sh/storage.sh:/storage.sh
+            - ./fdfs/storage.conf:/etc/fdfs/storage.conf
+            - ./fdfs/client.conf:/etc/fdfs/client.conf
+            - ./fdfs/mod_fastdfs.conf:/etc/fdfs/mod_fastdfs.conf
+            - ./fdfs/nginx.conf:/etc/nginx/conf/nginx.conf
+        working_dir: /
+        #entrypoint:
+        command: ["sh","storage.sh"]
+    storage1:
+            container_name: storage1
+            image: morunchang/fastdfs
+            restart: always
+            ports:
+                - 2380:80
+            links:
+                - tracker:tracker
+            environment:
+                - TRACKER_IP=tracker:22122
+                - GROUP_NAME=lbbniu1
+            working_dir: /
+            #entrypoint:
+            command: ["sh","storage.sh"]
+    tracker:
+        container_name: tracker
+        image: morunchang/fastdfs
+        restart: always
+        expose:
+            - 22122
+        volumes:
+            - ./sh/tracker.sh:/tracker.sh
+            - ./fdfs/client.conf:/etc/fdfs/client.conf
+            - ./fdfs/tracker.conf:/etc/fdfs/tracker.conf
+        working_dir: /
+        command: ["sh","tracker.sh"]
